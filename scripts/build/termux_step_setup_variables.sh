@@ -38,7 +38,7 @@ termux_step_setup_variables() {
 	if [ "$TERMUX_PACKAGE_LIBRARY" = "glibc" ]; then
 		export TERMUX_PREFIX="$TERMUX_PREFIX/glibc"
 		if ! package__is_package_name_have_glibc_prefix "$TERMUX_PKG_NAME"; then
-			TERMUX_PKG_NAME="${TERMUX_PKG_NAME}-glibc"
+			TERMUX_PKG_NAME="$(package__add_prefix_glibc_to_package_name ${TERMUX_PKG_NAME})"
 		fi
 	fi
 
@@ -92,7 +92,7 @@ termux_step_setup_variables() {
 			if [ -n "${LD_PRELOAD-}" ]; then
 				unset LD_PRELOAD
 			fi
-			if ! $(echo "$PATH" | grep -q "$TERMUX_PREFIX"); then
+			if ! $(echo "$PATH" | grep -q "^$TERMUX_PREFIX/bin"); then
 				if [ -d "${TERMUX_PREFIX}/bin" ]; then
 					export PATH="${TERMUX_PREFIX}/bin:${PATH}"
 				else
@@ -100,12 +100,8 @@ termux_step_setup_variables() {
 				fi
 			fi
 		else
-			if ! $(echo "$PATH" | grep -q "${CGCT_DIR}/${TERMUX_ARCH}/bin"); then
-				if [ -d "${CGCT_DIR}/${TERMUX_ARCH}/bin" ]; then
-					export PATH="${CGCT_DIR}/${TERMUX_ARCH}/bin:${PATH}"
-				else
-					termux_error_exit "The cgct tools were not found, run './scripts/setup-cgct.sh'"
-				fi
+			if [ ! -d "${CGCT_DIR}/${TERMUX_ARCH}/bin" ]; then
+				termux_error_exit "The cgct tools were not found, run './scripts/setup-cgct.sh'"
 			fi
 		fi
 	fi

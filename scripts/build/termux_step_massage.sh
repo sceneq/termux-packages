@@ -17,6 +17,9 @@ termux_step_massage() {
 	# Remove cache file created by glib-compile-schemas:
 	rm -f share/glib-2.0/schemas/gschemas.compiled
 
+ 	# Removing the pacman log that is often included in the package:
+  	rm -f var/log/pacman.log
+
 	# Remove cache file created by gtk-update-icon-cache:
 	rm -f share/icons/hicolor/icon-theme.cache
 
@@ -61,12 +64,8 @@ termux_step_massage() {
 	if [ "$TERMUX_PKG_NO_SHEBANG_FIX" != "true" ]; then
 		# Fix shebang paths:
 		while IFS= read -r -d '' file; do
-			if head -c 100 "$file" | head -n 1 | grep -E "^#!.*/bin/.*" | grep -q -E -v "^#! ?/system"; then
-				if [ "$TERMUX_PACKAGE_LIBRARY" = "bionic" ]; then
-					sed --follow-symlinks -i -E "1 s@^#\!(.*)/bin/(.*)@#\!$TERMUX_PREFIX/bin/\2@" "$file"
-				elif [ "$TERMUX_PACKAGE_LIBRARY" = "glibc" ]; then
-					sed --follow-symlinks -i -E "1 s@^#\!(.*)/bin/(.*)@#\!$TERMUX_PREFIX_CLASSICAL/bin/\2@" "$file"
-				fi
+			if head -c 100 "$file" | head -n 1 | grep -E "^#!.*/bin/.*" | grep -q -E -v -e "^#! ?/system" -e "^#! ?$TERMUX_PREFIX_CLASSICAL"; then
+				sed --follow-symlinks -i -E "1 s@^#\!(.*)/bin/(.*)@#\!$TERMUX_PREFIX/bin/\2@" "$file"
 			fi
 		done < <(find -L . -type f -print0)
 	fi

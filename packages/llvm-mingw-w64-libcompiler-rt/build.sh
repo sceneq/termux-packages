@@ -2,9 +2,9 @@ TERMUX_PKG_HOMEPAGE=https://www.llvm.org/
 TERMUX_PKG_DESCRIPTION="Compiler runtime libraries for LLVM-MinGW"
 TERMUX_PKG_LICENSE="Apache-2.0"
 TERMUX_PKG_MAINTAINER="@licy183"
-TERMUX_PKG_VERSION=20230320
-TERMUX_PKG_SRCURL=https://github.com/mstorsjo/llvm-mingw/releases/download/$TERMUX_PKG_VERSION/llvm-mingw-$TERMUX_PKG_VERSION-ucrt-ubuntu-18.04-x86_64.tar.xz
-TERMUX_PKG_SHA256=bc367753dea829d219be32e2e64e2d15d03158ce8e700ae5210ca3d78e6a07ea
+TERMUX_PKG_VERSION=20231017
+TERMUX_PKG_SRCURL=https://github.com/mstorsjo/llvm-mingw/releases/download/$TERMUX_PKG_VERSION/llvm-mingw-$TERMUX_PKG_VERSION-ucrt-ubuntu-20.04-x86_64.tar.xz
+TERMUX_PKG_SHA256=4ca5290be640e6d9c00d676e3f3e8ddebac045ee512534c96fcf5bf70852afef
 TERMUX_PKG_PLATFORM_INDEPENDENT=true
 TERMUX_PKG_NO_STATICSPLIT=true
 
