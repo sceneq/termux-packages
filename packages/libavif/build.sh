@@ -1,0 +1,28 @@
+TERMUX_PKG_HOMEPAGE=https://github.com/AOMediaCodec/libavif
+TERMUX_PKG_DESCRIPTION="Portable C implementation of the AV1 Image File Format"
+TERMUX_PKG_LICENSE="BSD"
+TERMUX_PKG_LICENSE_FILE="LICENSE"
+TERMUX_PKG_MAINTAINER="@sceneq"
+TERMUX_PKG_VERSION="1.0.1"
+TERMUX_PKG_REVISION=1
+TERMUX_PKG_SRCURL=https://github.com/AOMediaCodec/libavif/archive/refs/tags/v${TERMUX_PKG_VERSION}.tar.gz
+TERMUX_PKG_SHA256=398fe7039ce35db80fe7da8d116035924f2c02ea4a4aa9f4903df6699287599c
+TERMUX_PKG_AUTO_UPDATE=true
+TERMUX_PKG_DEPENDS="libpng, libjpeg-turbo, zlib, libaom, libyuv"
+TERMUX_PKG_EXTRA_CONFIGURE_ARGS="
+-DAVIF_BUILD_APPS=ON
+-DAVIF_CODEC_AOM=ON
+"
+#-DAVIF_CODEC_DAV1D=ON
+#-DBUILD_SHARED_LIBS=OFF
+#-DAVIF_LOCAL_AOM=ON
+#-DAVIF_LOCAL_DAV1D=ON
+#-DAVIF_LOCAL_JPEG=ON
+#-DAVIF_LOCAL_ZLIBPNG=ON
+#-DAVIF_LOCAL_LIBYUV=ON
+
+#TERMUX_PKG_BUILDDIR="/home/builder/.termux-build/libavif/build"
+#TERMUX_PREFIX="/data/data/com.termux/files/usr"
+#termux_step_make_install() {
+#	install -Dm700 $TERMUX_PKG_BUILDDIR/{avifdec,avifenc} $TERMUX_PREFIX/bin/
+#}

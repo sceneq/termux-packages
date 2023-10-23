@@ -1,0 +1,10 @@
+TERMUX_PKG_HOMEPAGE=https://chromium.googlesource.com/libyuv/libyuv
+TERMUX_PKG_DESCRIPTION="libyuv is an open source project that includes YUV scaling and conversion functionality."
+TERMUX_PKG_LICENSE_FILE="LICENSE"
+TERMUX_PKG_MAINTAINER="@sceneq"
+TERMUX_PKG_VERSION="1875"
+TERMUX_PKG_SRCURL=git+https://chromium.googlesource.com/libyuv/libyuv
+TERMUX_PKG_GIT_BRANCH=main
+TERMUX_PKG_AUTO_UPDATE=true
+#TERMUX_PKG_DEPENDS=""
+#TERMUX_PKG_EXTRA_CONFIGURE_ARGS=""
